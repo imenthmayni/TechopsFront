@@ -8,7 +8,7 @@ import { Project } from '../Model/project';
   providedIn: 'root'
 })
 export class BudgetService {
-  private baseUrl = 'http://localhost:8089/Budget';
+  private baseUrl = 'http://192.168.130.128:8089/Budget';
 
   constructor(private http: HttpClient) { }
 

@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 })
 export class SigninService {
 
-  private baseUrl = 'http://localhost:8089';
+  private baseUrl = 'http://192.168.130.128:8089';
 
   private loggedInUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
@@ -15,7 +15,7 @@ export class SigninService {
 
   // loginUser(loginData: any): Observable<any> {
   //   return this.http.post(`${this.baseUrl}/auth`, loginData)
-    
+
   //     .pipe(
   //       tap(user => {
   //         // Store token in local storage upon successful login
@@ -23,7 +23,7 @@ export class SigninService {
   //         this.loggedInUserSubject.next(user);
   //       })
   //     );
-      
+
   // }
   setLoggedInUser(user: any): void {
     this.loggedInUserSubject.next(user);

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-const apiUrl='http://localhost:8089/file'
+const apiUrl='http://192.168.130.128:8089/file'
 @Injectable({
   providedIn: 'root'
 })

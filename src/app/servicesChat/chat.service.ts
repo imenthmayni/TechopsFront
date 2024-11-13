@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ChatService {
 
-  baseUrl = "http://localhost:8089";
+  baseUrl = "http://192.168.130.128:8089";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -34,20 +34,20 @@ export class ChatService {
     return this.httpClient.post(this.baseUrl + "/chats/add", chat);
   }
 
-  
-  
+
+
     getChatByFirstUserNameAndSecondUserName(firstUserName: String, secondUserName: String) {
      return this.httpClient.get<Chat>(this.baseUrl + "/chats/getChatByFirstUserNameAndSecondUserName" + '?firstUserName=' + firstUserName + '&secondUserName=' + secondUserName)
-   } 
+   }
   /* getChatByFirstUserNameAndSecondUserName(firstUserName: string, secondUserName: string) {
     const url = `${this.baseUrl}/chats/getChatByFirstUserNameAndSecondUserName`;
     const params = new HttpParams()
       .set('firstUserName', firstUserName)
       .set('secondUserName', secondUserName);
-  
+
     return this.httpClient.get<Chat>(url, { params });
   } */
-  
+
 
   getChatByFirstUserNameOrSecondUserName(username: any) {
     return this.httpClient.get<Chat>(this.baseUrl + "/chats/getChatByFirstUserNameOrSecondUserName/" + username)

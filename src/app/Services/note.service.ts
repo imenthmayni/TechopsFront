@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NoteService {
-  private baseUrl = 'http://localhost:8089/Note';
+  private baseUrl = 'http://192.168.130.128:8089/Note';
 
   constructor(private http: HttpClient) { }
 

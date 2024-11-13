@@ -5,7 +5,7 @@ import { Leav } from '../Models/leav';
 import { User } from '../Models/leav';
 
 
-const apiUrl = 'http://localhost:8089/leav';
+const apiUrl = 'http://192.168.130.128:8089/leav';
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +20,12 @@ export class LeavService {
   getLeavs(): Observable<Leav[]> {
     return this.http.get<Leav[]>(apiUrl + '/allLeavs');
   }
-  
+
   getLeavById(leaveId: number): Observable<Leav> { // Make sure to specify return type as Observable<Leav>
     return this.http.get<Leav>(`${apiUrl}/get/${leaveId}`); // Use template literals for dynamic URL
   }
 
-  
+
   updateLeav(updatedLeav: Leav): Observable<Leav> {
     return this.http.put<Leav>(`${apiUrl}/updateLeav`, updatedLeav);
   }
@@ -35,9 +35,9 @@ export class LeavService {
   getNotifications(): Observable<any> {
     return this.http.get<any>(`${apiUrl}/notifications`);
   }
-  
+
   getUserByLeavId(leaveId: number ): Observable<any> {
-    return this.http.get(`${apiUrl}/${leaveId}/userByLeave`); 
+    return this.http.get(`${apiUrl}/${leaveId}/userByLeave`);
   }
   getLeaveIdByDate(leaveStartdate: String): Observable<number> {
     return this.http.get<number>(`${apiUrl}/leaveIdByDate/${leaveStartdate}`);

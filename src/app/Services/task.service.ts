@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Task } from '../Model/task';
 
 
-const baseUrl = 'http://localhost:8089/Task'
+const baseUrl = 'http://192.168.130.128:8089/Task'
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +25,7 @@ export class TaskService {
     const url = `${baseUrl}/remove-task/${taskId}`;
     return this.http.delete<void>(url);
   }
-  
+
   assignTaskToProject(projectId: number, taskId: number): Observable<Task> {
     return this.http.post<Task>(`${baseUrl}/${taskId}/assign-to-project/${projectId}`, null);
   }

@@ -2,14 +2,14 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Candidate } from '../Models/candidate';
-const apiUrl = 'http://localhost:8089/candidate';
+const apiUrl = 'http://192.168.130.128:8089/candidate';
 @Injectable({
   providedIn: 'root'
 })
 export class CandidateService {
 
   constructor(private http: HttpClient) { }
-  
+
 
   createCandidate(candidate: Candidate): Observable<any> {
     return this.http.post<any>(apiUrl + '/addCandidate', candidate);
@@ -28,6 +28,6 @@ export class CandidateService {
   getCandidateCountForOffer(offerId: number): Observable<number> {
     return this.http.get<number>(`${apiUrl}/count?offerId=${offerId}`);
   }
-  
-  
+
+
 }

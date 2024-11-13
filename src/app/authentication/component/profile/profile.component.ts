@@ -26,7 +26,7 @@ export class ProfileComponent implements AfterViewInit {
   /* User ={
     image: ''
   }; */
-  
+
   ngAfterViewInit(): void {
     throw new Error('Method not implemented.');
   }
@@ -49,7 +49,7 @@ export class ProfileComponent implements AfterViewInit {
           console.log('Image uploaded successfully:', response);
           if (response && response.imageURL) {
             this.user.image  = response.imageURL;
-           
+
             callback();
           } else {
             console.error('Error: Image URL not found in response.');
@@ -71,7 +71,7 @@ export class ProfileComponent implements AfterViewInit {
       console.error('No file selected');
       return;
     }
-    
+
     const formData = new FormData();
     formData.append('file', this.selectedFile);
 
@@ -91,7 +91,7 @@ export class ProfileComponent implements AfterViewInit {
     };
 
     // Make HTTP request to upload the file with the Authorization header
-    this.http.post<any>('http://localhost:8089/upload-profile-photo', formData, httpOptions).subscribe(
+    this.http.post<any>('http://192.168.130.128:8089/upload-profile-photo', formData, httpOptions).subscribe(
       (response) => {
         console.log(response);
         // Handle success
@@ -107,7 +107,7 @@ export class ProfileComponent implements AfterViewInit {
       console.error('No file selected');
       return;
     }
-    
+
     const formData = new FormData();
     formData.append('file', this.selectedFile);
 
@@ -125,7 +125,7 @@ export class ProfileComponent implements AfterViewInit {
       };
 
     // Make HTTP request to upload the file
-    this.http.post<any>('http://localhost:8089/user/upload-profile-photo', formData, httpOptions).subscribe(
+    this.http.post<any>('http://192.168.130.128:8089/user/upload-profile-photo', formData, httpOptions).subscribe(
       (response) => {
         console.log(response);
         // Handle success
@@ -142,7 +142,7 @@ export class ProfileComponent implements AfterViewInit {
       this.user = data
       console.log("thes is the response",data);
       this.token = data.token;
-    } );  
+    } );
     this.userService.getGeneraleEmployesData().subscribe(
       (data) => {
         this.completedProjectsStats = data;
@@ -172,9 +172,9 @@ export class ProfileComponent implements AfterViewInit {
       // Handle no file selected error
     }
   }
-  
- 
-  
+
+
+
 
   logout() {
     // Add logout functionality here
@@ -188,20 +188,20 @@ export class ProfileComponent implements AfterViewInit {
   goBack() {
     this.router.navigate(["/admin"]);
   }
-  
+
   updateProfile(){
 
     this.service.updateUser(this.user).subscribe(
       updatedUser => {
         this.ajouterImage(()=>{
           this.service.updateUser(this.user).subscribe(
-            res => 
+            res =>
               {
               this.user={
               image:''
               }
           }
-              
+
           )
         }
       )
@@ -216,7 +216,7 @@ export class ProfileComponent implements AfterViewInit {
 
   }
   navigateToUpdate() {
-    
+
     this.router.navigate(['/update']);
   }
   downloadProfilePdf(): void {

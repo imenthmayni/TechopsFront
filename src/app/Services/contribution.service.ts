@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Contribution } from '../models/contribution';
 import { Observable } from 'rxjs';
 
-const baseUrl = 'http://localhost:8089/contribution';
+const baseUrl = 'http://192.168.130.128:8089/contribution';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +31,5 @@ export class ContributionService {
   affectContribution(prime: Contribution, userId: number): Observable<Contribution> {
     return this.http.put<Contribution>(`${baseUrl}/affect-contribution/${userId}`, prime);
   }
-  
+
 }

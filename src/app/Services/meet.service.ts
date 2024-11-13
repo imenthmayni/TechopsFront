@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Meeting } from '../models/meeting';
 
-const baseUrl = 'http://localhost:8089/meet' ;
+const baseUrl = 'http://192.168.130.128:8089/meet' ;
 
 @Injectable({
   providedIn: 'root'
 })
 export class MeetService {
   constructor(private http: HttpClient) { }
-  
+
   retrieveAllMeetings(): Observable<Meeting[]> {
     return this.http.get<Meeting[]>(`${baseUrl}/retriveMeetings`);
   }

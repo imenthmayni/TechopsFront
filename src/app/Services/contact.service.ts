@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ContactService {
 
-  private apiUrl = 'http://localhost:8089/contact/send';
+  private apiUrl = 'http://192.168.130.128:8089/contact/send';
 
   constructor(private http: HttpClient) { }
 

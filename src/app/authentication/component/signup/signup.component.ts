@@ -18,14 +18,14 @@ export class SignupComponent {
 
   signup() {
     // Check if the password is strong before proceeding with registration
-    
+
       let bodyData = {
-       
+
         "email": this.email,
         "password": this.password
-      }; 
+      };
 
-      this.http.post("http://localhost:8089/auth/signup", 
+      this.http.post("http://192.168.130.128:8089/auth/signup",
       bodyData, { responseType: 'text' }).subscribe(
         (resultData: any) => {
           console.log(resultData);
@@ -37,8 +37,8 @@ export class SignupComponent {
           // Handle errors here
           console.error('Error during signup:', error);
         }
-        
+
       );
     }
-  
+
 }

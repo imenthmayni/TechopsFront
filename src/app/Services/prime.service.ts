@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Prime } from '../models/prime';
 
-const baseUrl = 'http://localhost:8089/prime';
+const baseUrl = 'http://192.168.130.128:8089/prime';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class PrimeService {
-  
+
 
   constructor(private http: HttpClient) { }
 

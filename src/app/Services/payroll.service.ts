@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Payroll } from 'src/app/models/payroll';
 
-const baseUrl = 'http://localhost:8089/Payroll';
+const baseUrl = 'http://192.168.130.128:8089/Payroll';
 
 
 @Injectable({

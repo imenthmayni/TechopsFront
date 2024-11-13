@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductionService {
-  private readonly API_URL = "http://localhost:8089";
+  private readonly API_URL = "http://192.168.130.128:8089";
   private readonly PRODUCTION_ADD_API_URL = `${this.API_URL}/productions/add`;
   private readonly PRODUCTION_ALL_API_URL = `${this.API_URL}/productions/all`;
   private readonly PRODUCTION_GET_BY_ID_API_URL = `${this.API_URL}/productions`;
@@ -24,7 +24,7 @@ export class ProductionService {
   private readonly DAY_OF_PROD = `${this.API_URL}/productions/totalProductionTimeDays/`;
   private readonly TAUX_RENDEMENT = `${this.API_URL}/productions/production/yield-rate/`;
 
-  
+
   constructor(private httpClient: HttpClient) { }
 ////////////////CRUD
   addProduction(production: Production): Observable<any> {

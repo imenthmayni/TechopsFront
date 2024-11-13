@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { combineLatest, Observable, of } from 'rxjs';
 
-import { map, switchMap } from 'rxjs/operators'; 
+import { map, switchMap } from 'rxjs/operators';
 
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -24,7 +24,7 @@ const state = {
   providedIn: 'root'
 })
 export class ProductService {
-  private readonly API_URL = "http://localhost:8089";
+  private readonly API_URL = "http://192.168.130.128:8089";
   private readonly PRODUCT_API_URL = `${this.API_URL}/product/addProduct`;
   private readonly GET_ALL_PRODUCTS_API_URL = `${this.API_URL}/product/getallproducts`;
   private readonly DELETE_PRODUCT_API_URL = `${this.API_URL}/product/deleteproduct/`;
@@ -54,7 +54,7 @@ export class ProductService {
   private readonly ADD_AND_ASSIGN_TO_CART = `${this.API_URL}/command/commands/`;
   private readonly EMAIL_USER = `${this.API_URL}/user/getIdByEmail/`;
 
-  
+
 
 
   constructor(private httpClient: HttpClient) { }
@@ -69,18 +69,18 @@ export class ProductService {
     return this.httpClient.get<Product[]>(this.GET_ALL_PRODUCTS_API_URL);
   }
 
- 
+
   deleteProduct(productId: number): Observable<string> {
     return this.httpClient.delete(`${this.DELETE_PRODUCT_API_URL}${productId}`, { responseType: 'text' });
   }
   getProductById(productId: number): Observable<Product> {
     return this.httpClient.get<Product>(`${this.FIND_BY_ID}${productId}`);
   }
-  
+
   // updateProduct(productId: number, productDetails: Product): Observable<any> {
   //   return this.httpClient.put(`${this.UPDATE_PRODUCT_API_URL}${productId}`, productDetails);
   // }
- 
+
   updateProduct(productId: number, product: any): Observable<any> {
     return this.httpClient.put(`${this.UPDATE_PRODUCT_API_URL}${productId}`, product);
   }
@@ -95,7 +95,7 @@ addOrUpdateProductToCart(cartId: number, productId: number, quantity: number): O
   getCartItemsWithProducts(cartId: number): Observable<CartItem[]> {
     return this.httpClient.get<CartItem[]>(`${this.GET_CART_ITEM_WITH_PRODUCTS}${cartId}`);
   }
-  
+
   public get cartItems(): Observable<Product[]> {
     const itemsStream = new Observable(observer => {
       observer.next(state.cart);
@@ -108,7 +108,7 @@ addOrUpdateProductToCart(cartId: number, productId: number, quantity: number): O
     const url = `${this.UPDATE_CART_ITEM_QUANTITY}/${cartId}/${cartItemId}/${newQuantity}`;
     return this.httpClient.put(url, null, { responseType: 'text' });
   }
-  
+
   getProductTypesCount(): Observable<{ type: string, count: number }[]> {
     return this.getAllProducts().pipe(
       map((products: Product[]) => {
@@ -116,7 +116,7 @@ addOrUpdateProductToCart(cartId: number, productId: number, quantity: number): O
         products.forEach((product: Product) => {
           const productType = product.productType;
           if (productType !== undefined) {
-            const type = productType; 
+            const type = productType;
             if (type) {
               if (typesMap.has(type)) {
                 typesMap.set(type, typesMap.get(type)! + 1);
@@ -130,7 +130,7 @@ addOrUpdateProductToCart(cartId: number, productId: number, quantity: number): O
       })
     );
   }
-   
+
 
   calculateSubtotals(cartId: number): Observable<any> {
     const url = `${this.SUB_TOTAL}/${cartId}`;
@@ -146,7 +146,7 @@ addOrUpdateProductToCart(cartId: number, productId: number, quantity: number): O
       });
       return itemsStream as Observable<Product[]>;
     }
-  
+
     // Add to Wishlist
      public addToWishlist(product: Product): any { // Ici, j'ai ajouté le type Product
     const wishlistItem = state.wishlist.find((item: Product) => item.productId === product.productId); // Ajoutez le typage pour item ici
@@ -157,7 +157,7 @@ addOrUpdateProductToCart(cartId: number, productId: number, quantity: number): O
     }
     return false; // Retourne faux si le produit est déjà dans la wishlist
   }
-  
+
     // Remove Wishlist items
     public removeWishlistItem(product: Product): any {
       const index = state.wishlist.indexOf(product);
@@ -191,8 +191,8 @@ addOrUpdateProductToCart(cartId: number, productId: number, quantity: number): O
   getTop3MostLikedProducts(): Observable<Product[]> {
     return this.httpClient.get<Product[]>(`${this.TOP3}`);
   }
-  
- 
+
+
     exportAsPDF(): void {
       let data = document.getElementById('cartContents');
       html2canvas(data!).then(canvas => {
@@ -218,11 +218,11 @@ addOrUpdateProductToCart(cartId: number, productId: number, quantity: number): O
     createOrder(command: Command): Observable<Command> {
       return this.httpClient.post<Command>(this.CREATE_ORDER_API_URL, command);
     }
-  
+
     deleteCommand(commandId: number): Observable<void> {
       return this.httpClient.delete<void>(`${this.DELETE_ORDER_API_URL}${commandId}`);
     }
-    
+
     findCommandsBetweenDates(start: Date, end: Date): Observable<Command[]> {
       const url = `${this.FIND_BETWEEN_DATE_API_URL}${start}/${end}`;
       return this.httpClient.get<Command[]>(url);
@@ -230,7 +230,7 @@ addOrUpdateProductToCart(cartId: number, productId: number, quantity: number): O
     findCommandsByStatus(status: string): Observable<Command[]> {
       return this.httpClient.get<Command[]>(`${this.FIND_COMMAND_BY_STATUS}${status}`);
     }
-  
+
     findCommandsByPaymentMethod(payment: string): Observable<Command[]> {
       return this.httpClient.get<Command[]>(`${this.FIND_COMMAND_BY_PAY_METHOD}${payment}`);
     }
@@ -311,8 +311,8 @@ addProductWithBarcodeAndAssignProduction(product: Product, productionId: number)
     generateBarcode(barcodeValue: string): Observable<Blob> {
       return this.httpClient.post<Blob>(this.BAR_CODE, barcodeValue, { responseType: 'blob' as 'json' });
     }
-    
- 
+
+
     getUserIdByEmail(email: string): Observable<number> {
       const url = `${this.EMAIL_USER}${email}`;
       return this.httpClient.get<number>(url);

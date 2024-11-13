@@ -7,8 +7,8 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class UpdateService {
 
-  private baseUrl = 'http://localhost:8089/user';
-  
+  private baseUrl = 'http://192.168.130.128:8089/user';
+
   constructor(private http: HttpClient) { }
 
  getUserProfile(): Observable<any> {
@@ -19,15 +19,15 @@ export class UpdateService {
   const token = userObj?.token || null
     // Check if token exists
     if (!token) {
-     
+
       console.error('Token not found in local storage');
       return throwError('Token not found');
     }
-  
+
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-  
+
     // Make HTTP request with headers
     return this.http.get<any>(`${this.baseUrl}/getCurrent`, { headers }).pipe(
       catchError(this.handleError)
@@ -39,7 +39,7 @@ export class UpdateService {
     const user = localStorage.getItem('user');
     const userObj = user ? JSON.parse(user) : null
     console.log(userObj?.token)
-    const token = userObj?.token || null  
+    const token = userObj?.token || null
     // Check if token exists
     if (!token) {
       // Handle the case where token doesn't exist
@@ -47,12 +47,12 @@ export class UpdateService {
       console.error('Token not found in local storage');
       return throwError('Token not found');
     }
-  
+
     // Set headers with Authorization token
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-  
+
     return this.http.put<any>(`${this.baseUrl}/editCurrent`, userData, { headers })
     .pipe(
       catchError((error: HttpErrorResponse) => {

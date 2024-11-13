@@ -37,7 +37,7 @@ export class AddrecrequestComponent implements OnInit{
       salaryRangeMin: ['', Validators.required],
       salaryRangeMax: ['', Validators.required],
       numberOfOpenings: ['', Validators.required],
-      urgent: [false, Validators.required], 
+      urgent: [false, Validators.required],
       recruitmentDate: ['', Validators.required],
       recruitmentStatus: ['', Validators.required]
     });
@@ -59,45 +59,45 @@ export class AddrecrequestComponent implements OnInit{
     }}
   showSuccessSnackbar() {
     this._snackBar.open('Recruitment submitted successfully!', 'Close', {
-      duration: 3000, 
+      duration: 3000,
     });
-    this.recruitmentForm.reset(); 
+    this.recruitmentForm.reset();
   }
 
   dismissAlert() {
     this.showSuccessAlert = false;
   }
-  
+
 
   GetRating(event: MouseEvent) {
     const starValue = (event.target as HTMLInputElement).value;
-    this.contributorName = ''; 
+    this.contributorName = '';
     this.ratingcount++;
     this.totalrating += +starValue;
     this.Finalrating = +starValue;
 
-    
+
     this.saveRating();
   }
 
  saveRating() {
     const ratingData = {
       rating: this.Finalrating,
-      contributor: this.contributorName 
+      contributor: this.contributorName
     };
 
-    const url = 'http://localhost:8089/rate/ratings'; 
+    const url = 'http://192.168.130.128:8089/rate/ratings';
 
-   
+
     this.http.post<any>(url, ratingData)
       .subscribe(
         (response) => {
           console.log('Rating saved successfully:', response);
-         
+
         },
         (error) => {
           console.error('Error saving rating:', error);
-      
+
         }
       );
 }

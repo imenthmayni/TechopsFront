@@ -6,7 +6,7 @@ import { User } from '../Model/user';
 import { Task, TaskStatus } from '../Model/task';
 
 
-const baseUrl = 'http://localhost:8089/Project'
+const baseUrl = 'http://192.168.130.128:8089/Project'
 @Injectable({
   providedIn: 'root'
 })
@@ -26,7 +26,7 @@ export class ProjectService {
 
 
   deleteProject(projectId: number): Observable<void> {
-    const url = `http://localhost:8089/Project/remove-project/${projectId}`;
+    const url = `http://192.168.130.128:8089/Project/remove-project/${projectId}`;
     return this.http.delete<void>(url);
   }
   getProject(projectId: number): Observable<Project> {

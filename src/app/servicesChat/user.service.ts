@@ -8,7 +8,7 @@ import { User } from '../models/user';
 })
 export class UserService {
 
-  baseUrl = "http://localhost:8089";
+  baseUrl = "http://192.168.130.128:8089";
 
   constructor(private httpClient: HttpClient) { }
 

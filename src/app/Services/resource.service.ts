@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Resources } from 'src/app/Model/resources';
-const baseUrl = 'http://localhost:8089/Resource'
+const baseUrl = 'http://192.168.130.128:8089/Resource'
 @Injectable({
   providedIn: 'root'
 })

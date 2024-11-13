@@ -16,7 +16,7 @@ export class WorkComponent implements OnInit {
   leavForm!: FormGroup;
   showSuccessAlert: boolean = false;
   newLeav!: Leav;
-  qrCodeUrl: string | undefined; 
+  qrCodeUrl: string | undefined;
 
 
 
@@ -35,7 +35,7 @@ export class WorkComponent implements OnInit {
     if (this.leavForm.valid) {
       const newLeav: Leav = {
         ...this.leavForm.value,
-        leaveStatus: LeaveStatus.PENDING 
+        leaveStatus: LeaveStatus.PENDING
       };
 
       const message = JSON.stringify(newLeav);
@@ -54,10 +54,10 @@ export class WorkComponent implements OnInit {
       );
     }
   }
-  
-  
+
+
   generateQRCode(message: string) {
-    this.http.get('http://localhost:8089/generateQR', {
+    this.http.get('http://192.168.130.128:8089/generateQR', {
       responseType: 'blob',
       params: { message }
     }).subscribe(

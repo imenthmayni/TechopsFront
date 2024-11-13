@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
 import { Recruitment } from '../Models/recruitment';
 
-const apiUrl = 'http://localhost:8089/recruitment';
+const apiUrl = 'http://192.168.130.128:8089/recruitment';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +50,7 @@ export class RecruitmentService {
     return this.http.get<Map<string, number>>(`${apiUrl}/recruitmentsPerManager`);
 }
 
- 
+
 getOpenPositionsByLocation(): Observable<Map<string, number>> {
   return this.http.get<Map<string, number>>(`${apiUrl}/openPositionsByLocation`);
 }
@@ -59,7 +59,7 @@ getOpenPositionsByLocation(): Observable<Map<string, number>> {
   getRecruitmentTrend(startYear: number, endYear: number): Observable<Map<string, Map<string, number>>> {
     return this.http.get<Map<string, Map<string, number>>>(`${apiUrl}}/recruitmentTrend/${startYear}/${endYear}`);
   }
-  
+
   getRecruitmentByPostTitle(postTitle: string): Observable<Recruitment> {
     return this.http.get<Recruitment>(`${apiUrl}/getByPostTitle/${postTitle}`);
   }

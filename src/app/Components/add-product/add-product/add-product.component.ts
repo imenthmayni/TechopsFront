@@ -14,11 +14,11 @@ import { ProductionService } from 'src/app/Services/production.service';
 export class AddProductComponent implements OnInit {
 
   productForm: FormGroup;
-  productions: any[] = []; 
+  productions: any[] = [];
 
   constructor(
-    private fb: FormBuilder, 
-    private productService: ProductService,  
+    private fb: FormBuilder,
+    private productService: ProductService,
     private snackBar: MatSnackBar ,
     private httpClient: HttpClient,
     private productionService :ProductionService
@@ -33,13 +33,13 @@ export class AddProductComponent implements OnInit {
       tva: [0, [Validators.required, Validators.min(0)]],
       createdAt: ['', Validators.required],
       productType: ['', Validators.required],
-      productionId: [null, Validators.required] 
+      productionId: [null, Validators.required]
 
     });
   }
 
   ngOnInit(): void {
-    this.getProductions(); 
+    this.getProductions();
 
   }
   getProductions() {
@@ -80,8 +80,8 @@ export class AddProductComponent implements OnInit {
     if (file) {
       const formData = new FormData();
       formData.append('file', file);
-  
-      this.httpClient.post('http://localhost:8089/api/uploadFile', formData, { responseType: 'text' })
+
+      this.httpClient.post('http://192.168.130.128:8089/api/uploadFile', formData, { responseType: 'text' })
         .subscribe({
           next: (response) => {
             console.log("Uploaded Successfully:", response);
@@ -92,6 +92,6 @@ export class AddProductComponent implements OnInit {
         });
     }
   }
-  
+
 
 }

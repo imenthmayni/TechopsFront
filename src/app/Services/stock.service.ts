@@ -7,7 +7,7 @@ import { MouvementStock } from '../ModelsDHOUHA/MouvementStock';
   providedIn: 'root'
 })
 export class StockService {
-  private readonly API_URL = "http://localhost:8089";
+  private readonly API_URL = "http://192.168.130.128:8089";
   private readonly MVT_STOCK_ADD_API_URL = `${this.API_URL}/stock/addMvt/`;
   private readonly GET_ALL_MVT = `${this.API_URL}/stock/allMvt/`;
   private readonly GET_BY_ID_MVT = `${this.API_URL}/stock/retrieve/`;
@@ -16,14 +16,14 @@ export class StockService {
   private readonly CURRENT_STOCK = `${this.API_URL}/stock/currentStock/`;
   private readonly AVERAGE_CONSUMPTION = `${this.API_URL}/stock/averageConsumption/`;
 
-  
-  
+
+
   constructor(private httpClient: HttpClient) { }
 // CRUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUD
   addMvt(mouvementStock: MouvementStock, productId: number): Observable<MouvementStock> {
     return this.httpClient.post<MouvementStock>(`${this.MVT_STOCK_ADD_API_URL}${productId}`, mouvementStock);
   }
- 
+
   getAllMouvements(): Observable<MouvementStock[]> {
     return this.httpClient.get<MouvementStock[]>(`${this.GET_ALL_MVT}`);
   }

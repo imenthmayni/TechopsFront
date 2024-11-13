@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class SignupService {
 
-  private baseUrl = 'http://localhost:8089';
+  private baseUrl = 'http://192.168.130.128:8089';
 
   private loggedInUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 

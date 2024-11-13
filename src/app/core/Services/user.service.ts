@@ -7,8 +7,8 @@ import { User } from '../Models/leav';
   providedIn: 'root'
 })
 export class UserService {
-  apiUrl  = "http://localhost:8089/user"; 
-  
+  apiUrl  = "http://192.168.130.128:8089/user";
+
   private loggedInUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
 

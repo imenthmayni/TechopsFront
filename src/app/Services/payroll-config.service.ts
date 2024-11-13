@@ -3,7 +3,7 @@ import { PayrollConfig } from '../models/payroll-config';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-const baseUrl = 'http://localhost:8089/payroll-config';
+const baseUrl = 'http://192.168.130.128:8089/payroll-config';
 
 @Injectable({
   providedIn: 'root'

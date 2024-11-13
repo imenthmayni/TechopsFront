@@ -8,15 +8,15 @@ import { ClientRoutingModule } from 'src/app/views/front/client/client-routing.m
 })
 export class ProfileService {
 
-  private baseUrl = 'http://localhost:8089/user'; // Mettez votre URL d'API ici
+  private baseUrl = 'http://192.168.130.128:8089/user'; // Mettez votre URL d'API ici
   private loggedInUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
 
   constructor(private http: HttpClient  ) { }
 
   getCompletedProjectsStatistics(): Observable<any> {
-    
-    return this.http.get<any>(`http://localhost:8089/Project/completed-future`);
+
+    return this.http.get<any>(`http://192.168.130.128:8089/Project/completed-future`);
   }
   // Récupérer les données de profil de l'utilisateur
   getUserProfile(): Observable<any> {
@@ -25,19 +25,19 @@ export class ProfileService {
     const userObj = user ? JSON.parse(user) : null
     console.log(userObj?.token)
     const token = userObj?.token || null
-  
+
     // Check if token exists
     if (!token) {
-     
+
       console.error('Token not found in local storage');
       throw new Error('Token not found');
     }
-  
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    
+
   console.log("token",token)
     // Make HTTP request with headers
     return this.http.get<any>(`${this.baseUrl}/getCurrent`, { headers }).pipe(
@@ -56,7 +56,7 @@ export class ProfileService {
 
   updateUser(userData: any): Observable<any> {
     const userId = this.getLoggedInUserId();
-    
+
     if (userId) {
       return this.http.put(`${this.baseUrl}/update/${userId}`, userData);
     } else {
@@ -70,7 +70,7 @@ export class ProfileService {
   }
 
   downloadProfilePdf(): Observable<Blob> {
-    return this.http.get(`http://localhost:8089/download/profile`, { responseType: 'blob' });
+    return this.http.get(`http://192.168.130.128:8089/download/profile`, { responseType: 'blob' });
   }
 
 

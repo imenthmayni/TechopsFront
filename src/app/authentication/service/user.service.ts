@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/app/Model/user';
 import { AddUserRequest } from 'src/app/views/admin/auth/auth/add-employee/add-employee/add-employee.component';
-const apiUrl = 'http://localhost:8089';
+const apiUrl = 'http://192.168.130.128:8089';
 
 @Injectable({
   providedIn: 'root'
@@ -76,18 +76,18 @@ export class UserService {
 
   }
   searchAllUserss(): Observable<any> {
-    
+
     const token = this.getUserToken()
 
     return this.http.get(apiUrl +'/users/', {
-    
+
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + token,
-        
+
       }
     })
-  
+
   }
 
 
@@ -123,12 +123,12 @@ export class UserService {
   } */
   /* updatePwd(userData: { currentPassword: string, newPassword: string }): Observable<any> {
     const token = this.getUserToken(); // Retrieve the user token
-  
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}` // Use template literal for string interpolation
     });
-  
+
     return this.http.post(apiUrl + '/user/editPassword', userData, { headers })
       .pipe(
         catchError((error: any) => {
@@ -139,7 +139,7 @@ export class UserService {
   updatePwd(userData: { currentPassword: string; newPassword: string }): Observable<any> {
     try {
       const token = this.getUserToken(); // Retrieve the user token
-        
+
       return this.http.post(apiUrl + '/user/editPassword', userData, {
         headers: {
           "Content-Type": "application/json",
@@ -174,19 +174,19 @@ export class UserService {
     const userObj = user ? JSON.parse(user) : null
     console.log(userObj?.token)
     const token = userObj?.token || null
-  
+
     // Check if token exists
     if (!token) {
-     
+
       console.error('Token not found in local storage');
       throw new Error('Token not found');
     }
-  
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    
+
   console.log("token",token)
     // Make HTTP request with headers
     return this.http.get<any>(`${apiUrl}/getCurrent`, { headers }).pipe(

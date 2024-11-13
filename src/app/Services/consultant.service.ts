@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Consultant } from '../models/consultant';
 
-const baseUrl = 'http://localhost:8089/CRM' ;
+const baseUrl = 'http://192.168.130.128:8089/CRM' ;
 
 @Injectable({
   providedIn: 'root'
@@ -19,19 +19,19 @@ export class ConsultantService {
   }
  */
   getConsultant(consultant_id: number) {
-    return this.http.get<any>(`http://localhost:8089/CRM/retrieve-consultant/${consultant_id}`);
+    return this.http.get<any>(`http://192.168.130.128:8089/CRM/retrieve-consultant/${consultant_id}`);
   }
   getAll(): Observable<Consultant[]> {
-    
+
     return this.http.get<Consultant[]>(baseUrl + '/retrieve-all-consultant');
 }
 
   addConsultant(consultant:Consultant):Observable<any>{
      return this.http.post<Consultant>(baseUrl+'/add-consultant',consultant)
-     
+
 }
 
-  
+
 updateConsultant(updatedConsultant: Consultant): Observable<Consultant> {
   return this.http.put<Consultant>(baseUrl+'/update-consultant', updatedConsultant);
 }

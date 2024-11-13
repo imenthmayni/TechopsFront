@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Portfolio } from '../models/portfolio';
 import { User } from '../models/user';
 
-const baseUrl = 'http://localhost:8089/PORTFOLIO' ;
+const baseUrl = 'http://192.168.130.128:8089/PORTFOLIO' ;
 @Injectable({
   providedIn: 'root'
 })
@@ -12,11 +12,11 @@ export class PortfolioService {
 
   constructor(private http: HttpClient) { }
   getAll(): Observable<Portfolio[]> {
-    
+
     return this.http.get<Portfolio[]>(baseUrl + '/retrieve-all-portfolio');
 }
 getportfilioWithoutConsultant(): Observable<Portfolio[]> {
-    
+
   return this.http.get<Portfolio[]>(baseUrl + '/retrieve-all-portfoliononaffectes');
 }
 addPortfolio(portfolio:Portfolio):Observable<any>{
@@ -26,7 +26,7 @@ removePortfolio(portfolio_id: number): Observable<void> {
   return this.http.delete<void>(`${baseUrl}/remove-portfolio/${portfolio_id}`);
 }
 getPortfolio(portfolio_id: number) {
-  return this.http.get<any>(`http://localhost:8089/PORTFOLIO/retrieve-Portfolio/${portfolio_id}`);
+  return this.http.get<any>(`http://192.168.130.128:8089/PORTFOLIO/retrieve-Portfolio/${portfolio_id}`);
 }
 affectUserToPortfolio(portfolio_id: number, user_id: number): Observable<any> {
   const url = `${baseUrl}/affceter/${portfolio_id}/${user_id}`;

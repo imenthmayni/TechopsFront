@@ -22,7 +22,7 @@ export class RatingComponent implements OnInit {
   ratingcontrol = new FormControl(0);
 
   GetRating(starIndex: number) {
-    const starValue = starIndex + 1; 
+    const starValue = starIndex + 1;
     this.contributorName = '';
     this.ratingcount++;
     this.totalrating += starValue;
@@ -35,10 +35,10 @@ export class RatingComponent implements OnInit {
  saveRating() {
     const ratingData = {
       rating: this.Finalrating,
-      contributor: this.contributorName 
+      contributor: this.contributorName
     };
 
-    const url = 'http://localhost:8089/rate/ratings'; 
+    const url = 'http://192.168.130.128:8089/rate/ratings';
 
     this.http.post<any>(url, ratingData)
       .subscribe(
